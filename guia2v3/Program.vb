@@ -32,59 +32,59 @@ Module Program
             ElseIf desicion = 2 Then
                 While True
                     Console.WriteLine("" + vbCrLf + "Ingrese unicamente los nombres del estudiante :")
-                Dim nombres As String = Console.ReadLine()
-                Console.WriteLine("" + vbCrLf + $"Ingrese los apellidos del estudiante {nombres} :")
-                Dim apellidos As String = Console.ReadLine()
-                Dim calificacion As Double = 0
-                Dim resultadoC As String = "NADA"
-                While True
-                    Console.WriteLine("" + vbCrLf + $"Ingrese la calificación final de {nombres} :")
-                    calificacion = Console.ReadLine()
-                    If calificacion >= 0 And calificacion <= 10 Then
-                        If calificacion < 5 Then
-                            resultadoC = "REPROBADO"
-                        ElseIf calificacion >= 5 And calificacion <= 5.9 Then
-                            resultadoC = "COMPLEMENTARIO"
-                        ElseIf calificacion >= 6 Then
-                            resultadoC = "APROBADO"
+                    Dim nombres As String = Console.ReadLine()
+                    Console.WriteLine("" + vbCrLf + $"Ingrese los apellidos del estudiante {nombres} :")
+                    Dim apellidos As String = Console.ReadLine()
+                    Dim calificacion As Double = 0
+                    Dim resultadoC As String = "NADA"
+                    While True
+                        Console.WriteLine("" + vbCrLf + $"Ingrese la calificación final de {nombres} :")
+                        calificacion = Console.ReadLine()
+                        If calificacion >= 0 And calificacion <= 10 Then
+                            If calificacion < 5 Then
+                                resultadoC = "REPROBADO"
+                            ElseIf calificacion >= 5 And calificacion <= 5.9 Then
+                                resultadoC = "COMPLEMENTARIO"
+                            ElseIf calificacion >= 6 Then
+                                resultadoC = "APROBADO"
+                            End If
+                            Exit While
+                        ElseIf calificacion < 0 Or calificacion > 10 Then
+                            Console.WriteLine("" + vbCrLf + "ERROR. Dato no valido, ingrese una calificación entre <0-10>")
                         End If
+                    End While
+                    Dim asistencia As Double = 0
+                    Dim resultadoAs As String = "NADA"
+                    While True
+                        Console.WriteLine("" + vbCrLf + $"Ingrese la asistencia total de {nombres} :")
+                        asistencia = Console.ReadLine()
+                        If asistencia >= 0 And asistencia <= 100 Then
+                            If asistencia < 75 Then
+                                resultadoAs = "REPROBADO"
+                            ElseIf asistencia >= 75 Then
+                                resultadoAs = "APROBADO"
+                            End If
+                            Exit While
+                        ElseIf asistencia < 0 Or asistencia > 100 Then
+                            Console.WriteLine("" + vbCrLf + "ERROR. Dato no valido, ingrese una asistencia entre <0-100>")
+                        End If
+                    End While
+                    Dim resultadoT As String = resultadoC
+                    If resultadoC = "COMPLEMENTARIO" And resultadoAs = "REPROBADO" Then
+                        resultadoT = "REPROBADO"
+                    ElseIf resultadoC = "APROBADO" And resultadoAs = "REPROBADO" Then
+                        resultadoT = "REPROBADO"
+                    End If
+                    Console.WriteLine("" + vbCrLf + $"{nombres} {apellidos} tiene una califación de {calificacion} y un asistencia de %{asistencia} y  un resultado de :{resultadoT}")
+                    Console.WriteLine("" + vbCrLf + "¿Quiere volver al menú principal? " + vbCrLf + "Presione la tecla <Y> para continuar, si no preciona cualquier otra letra <X>:")
+                    Dim sigo As String = Console.ReadLine()
+                    If sigo = "y" Or sigo = "Y" Then
                         Exit While
-                    ElseIf calificacion < 0 Or calificacion > 10 Then
-                        Console.WriteLine("" + vbCrLf + "ERROR. Dato no valido, ingrese una calificación entre <0-10>")
+                    Else
+                        Continue While
                     End If
                 End While
-                Dim asistencia As Double = 0
-                Dim resultadoAs As String = "NADA"
-                While True
-                    Console.WriteLine("" + vbCrLf + $"Ingrese la asistencia total de {nombres} :")
-                    asistencia = Console.ReadLine()
-                    If asistencia >= 0 And asistencia <= 100 Then
-                        If asistencia < 75 Then
-                            resultadoAs = "REPROBADO"
-                        ElseIf asistencia >= 75 Then
-                            resultadoAs = "APROBADO"
-                        End If
-                        Exit While
-                    ElseIf asistencia < 0 Or asistencia > 100 Then
-                        Console.WriteLine("" + vbCrLf + "ERROR. Dato no valido, ingrese una asistencia entre <0-100>")
-                    End If
-                End While
-                Dim resultadoT As String = resultadoC
-                If resultadoC = "COMPLEMENTARIO" And resultadoAs = "REPROBADO" Then
-                    resultadoT = "REPROBADO"
-                ElseIf resultadoC = "APROBADO" And resultadoAs = "REPROBADO" Then
-                    resultadoT = "REPROBADO"
-                End If
-                Console.WriteLine("" + vbCrLf + $"{nombres} {apellidos} tiene una califación de {calificacion} y un asistencia de %{asistencia} y  un resultado de :{resultadoT}")
-                Console.WriteLine("" + vbCrLf + "¿Quiere volver al menú principal? " + vbCrLf + "Presione la tecla <Y> para continuar, si no preciona cualquier otra letra <X>:")
-                Dim sigo As String = Console.ReadLine()
-                If sigo = "y" Or sigo = "Y" Then
-                    Exit While
-                Else
-                    Continue While
-                End If
-                End While
-        ElseIf desicion = 3 Then
+            ElseIf desicion = 3 Then
                 While True
                     Console.WriteLine("" + vbCrLf + "Ingrese la temperatura actual :")
                     Dim temperatura As Integer = Console.ReadLine()
@@ -120,7 +120,34 @@ Module Program
                     End If
                 Next
                 Console.WriteLine()
-                'ElseIf desicion = 5 Then
+            ElseIf desicion = 5 Then
+                While True
+                    Console.WriteLine("" + vbCrLf + "MEJOR EQUIPO: " + vbCrLf + "" + vbCrLf + "1. THE AVENGERS" + vbCrLf + "2. GUERREROS Z" + vbCrLf + "3. LA LIGA DE LA JUSTICIA" + vbCrLf + "ESCRIBE EL NOMBRE:")
+                    Dim equipo As String = Console.ReadLine()
+                    equipo = equipo.ToUpper()
+                    Dim personaje As String = "Anónimo"
+                    If equipo = "THE AVENGERS" Then
+                        Console.WriteLine("" + vbCrLf + "MEJOR PERSONAJE: " + vbCrLf + "" + vbCrLf + "1. Iron man" + vbCrLf + "2. El increible hulk" + vbCrLf + "3. Thor" + vbCrLf + "ESCRIBE EL NOMBRE:")
+                        personaje = Console.ReadLine()
+                        personaje = personaje.ToUpper
+                    ElseIf equipo = "GUERREROS Z" Then
+                        Console.WriteLine("" + vbCrLf + "MEJOR PERSONAJE: " + vbCrLf + "" + vbCrLf + "1. Freezer" + vbCrLf + "2. Androide 17" + vbCrLf + "3. Piccolo" + vbCrLf + "ESCRIBE EL NOMBRE:")
+                        personaje = Console.ReadLine()
+                        personaje = personaje.ToUpper
+                    ElseIf equipo = "LA LIGA DE LA JUSTICIA" Then
+                        Console.WriteLine("" + vbCrLf + "MEJOR PERSONAJE: " + vbCrLf + "" + vbCrLf + "1. Linterna Verde" + vbCrLf + "2. Batman" + vbCrLf + "3. AquaMan" + vbCrLf + "ESCRIBE EL NOMBRE:")
+                        personaje = Console.ReadLine()
+                        personaje = personaje.ToUpper
+                    End If
+                    Console.WriteLine("" + vbCrLf + $"Tú equipo favorito es: {equipo} y tú personaje favorito es: {personaje}")
+                    Console.WriteLine("" + vbCrLf + "¿Quiere volver al menú principal? " + vbCrLf + "Presione la tecla <Y> para continuar, si no preciona cualquier otra letra <X>:")
+                    Dim sigo As String = Console.ReadLine()
+                    If sigo = "y" Or sigo = "Y" Then
+                        Exit While
+                    Else
+                        Continue While
+                    End If
+                End While
             Else
                 Console.WriteLine("" + vbCrLf + "ERROR. opción invalida, vuelva a intentarlo.")
             End If
