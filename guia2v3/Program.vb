@@ -3,7 +3,7 @@ Imports System
 Module Program
     Sub Main()
         While True
-            Console.WriteLine("Elija un opción <1-5>: ")
+            Console.WriteLine("" + vbCrLf + "Elija un opción <1-5>: ")
             Dim desicion As Integer = Console.ReadLine()
             If desicion = 1 Then
                 While True
@@ -21,23 +21,67 @@ Module Program
                     Else
                         Console.WriteLine("" + vbCrLf + "Su número no es multiplo de 3")
                     End If
+                    Console.WriteLine("" + vbCrLf + "¿Quiere volver al menú principal? " + vbCrLf + "Presione la tecla <Y> para continuar, de lo contrario presione la tecla <N>:")
+                    Dim sigo As String = Console.ReadLine()
+                    If sigo = "y" Or sigo = "Y" Then
+                        Exit While
+                    ElseIf sigo = "n" Or sigo = "N" Then
+                        Continue While
+                    Else
+                        Console.WriteLine("" + vbCrLf + "ERROR. Letra invalida, vuelvalo a intentar.")
+                    End If
                 End While
             ElseIf desicion = 2 Then
-                Console.WriteLine("Ingrese unicamente los nombres del estudiante :")
+                Console.WriteLine("" + vbCrLf + "Ingrese unicamente los nombres del estudiante :")
                 Dim nombres As String = Console.ReadLine()
-                Console.WriteLine($"Ingrese los apellidos del estudiante {nombres} :")
+                Console.WriteLine("" + vbCrLf + $"Ingrese los apellidos del estudiante {nombres} :")
                 Dim apellidos As String = Console.ReadLine()
-                Console.WriteLine($"Ingrese la calificación final de {nombres} :")
-                Dim calificacion As Double = Console.ReadLine()
-                Console.WriteLine($"Ingrese la asistencia total de {nombres} :")
-                Dim asistencia As Double = Console.ReadLine()
-                Console.ReadLine()
-                Console.WriteLine($"{nombres} {apellidos} tiene una califación de {calificacion} y un asistencia de {asistencia}")
+                Dim calificacion As Double = 0
+                Dim resultadoC As String = "NADA"
+                While True
+                    Console.WriteLine("" + vbCrLf + $"Ingrese la calificación final de {nombres} :")
+                    calificacion = Console.ReadLine()
+                    If calificacion >= 0 And calificacion <= 10 Then
+                        If calificacion < 5 Then
+                            resultadoC = "REPROBADO"
+                        ElseIf calificacion >= 5 And calificacion <= 5.9 Then
+                            resultadoC = "COMPLEMENTARIO"
+                        ElseIf calificacion >= 6 Then
+                            resultadoC = "APROBADO"
+                        End If
+                        Exit While
+                    ElseIf calificacion < 0 Or calificacion > 10 Then
+                        Console.WriteLine("" + vbCrLf + "ERROR. Dato no valido, ingrese una calificación entre <0-10>")
+                    End If
+                End While
+                Dim asistencia As Double = 0
+                Dim resultadoAs As String = "NADA"
+                While True
+                    Console.WriteLine("" + vbCrLf + $"Ingrese la asistencia total de {nombres} :")
+                    asistencia = Console.ReadLine()
+                    If asistencia >= 0 And asistencia <= 100 Then
+                        If asistencia < 75 Then
+                            resultadoAs = "REPROBADO"
+                        ElseIf asistencia >= 75 Then
+                            resultadoAs = "APROBADO"
+                        End If
+                        Exit While
+                    ElseIf asistencia < 0 Or asistencia > 100 Then
+                        Console.WriteLine("" + vbCrLf + "ERROR. Dato no valido, ingrese una asistencia entre <0-100>")
+                    End If
+                End While
+                Dim resultadoT As String = resultadoC
+                If resultadoC = "COMPLEMENTARIO" And resultadoAs = "REPROBADO" Then
+                    resultadoT = "REPROBADO"
+                ElseIf resultadoC = "APROBADO" And resultadoAs = "REPROBADO" Then
+                    resultadoT = "REPROBADO"
+                End If
+                Console.WriteLine("" + vbCrLf + $"{nombres} {apellidos} tiene una califación de {calificacion} y un asistencia de %{asistencia} y  un resultado de :{resultadoT}")
                 'ElseIf desicion = 3 Then
                 'ElseIf desicion = 4 Then
                 'ElseIf desicion = 5 Then
             Else
-                Console.WriteLine("ERROR. opción invalida, vuelva a intentarlo.")
+                Console.WriteLine("" + vbCrLf + "ERROR. opción invalida, vuelva a intentarlo.")
             End If
         End While
     End Sub
