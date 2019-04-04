@@ -77,7 +77,28 @@ Module Program
                     resultadoT = "REPROBADO"
                 End If
                 Console.WriteLine("" + vbCrLf + $"{nombres} {apellidos} tiene una califación de {calificacion} y un asistencia de %{asistencia} y  un resultado de :{resultadoT}")
-                'ElseIf desicion = 3 Then
+            ElseIf desicion = 3 Then
+                While True
+                    Console.WriteLine("" + vbCrLf + "Ingrese la temperatura actual :")
+                    Dim temperatura As Integer = Console.ReadLine()
+                    Select Case temperatura
+                        Case <= 0
+                            Console.WriteLine("" + vbCrLf + "El clima esta FRIO, es hora de ponerte un abrigo.")
+                        Case 1 To 20
+                            Console.WriteLine("" + vbCrLf + "El clima esta CALIDO, no hay de que preocuparte.")
+                        Case 21 To 40
+                            Console.WriteLine("" + vbCrLf + "El clima esta CALUROSO, ¿Por qué no compras un helado?")
+                        Case >= 41
+                            Console.WriteLine("" + vbCrLf + "El clima esta ARDIENTE, Alista el coche y vete a la playa.")
+                    End Select
+                    Console.WriteLine("" + vbCrLf + "¿Quiere volver al menú principal? " + vbCrLf + "Presione la tecla <Y> para continuar, si no preciona cualquier otra letra <X>:")
+                        Dim sigo As String = Console.ReadLine()
+                    If sigo = "y" Or sigo = "Y" Then
+                        Exit While
+                    Else
+                        Continue While
+                    End If
+                End While
                 'ElseIf desicion = 4 Then
                 'ElseIf desicion = 5 Then
             Else
