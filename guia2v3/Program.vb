@@ -21,18 +21,17 @@ Module Program
                     Else
                         Console.WriteLine("" + vbCrLf + "Su número no es multiplo de 3")
                     End If
-                    Console.WriteLine("" + vbCrLf + "¿Quiere volver al menú principal? " + vbCrLf + "Presione la tecla <Y> para continuar, de lo contrario presione la tecla <N>:")
+                    Console.WriteLine("" + vbCrLf + "¿Quiere volver al menú principal? " + vbCrLf + "Presione la tecla <Y> para continuar, si no preciona cualquier otra letra <X>:")
                     Dim sigo As String = Console.ReadLine()
                     If sigo = "y" Or sigo = "Y" Then
                         Exit While
-                    ElseIf sigo = "n" Or sigo = "N" Then
-                        Continue While
                     Else
-                        Console.WriteLine("" + vbCrLf + "ERROR. Letra invalida, vuelvalo a intentar.")
+                        Continue While
                     End If
                 End While
             ElseIf desicion = 2 Then
-                Console.WriteLine("" + vbCrLf + "Ingrese unicamente los nombres del estudiante :")
+                While True
+                    Console.WriteLine("" + vbCrLf + "Ingrese unicamente los nombres del estudiante :")
                 Dim nombres As String = Console.ReadLine()
                 Console.WriteLine("" + vbCrLf + $"Ingrese los apellidos del estudiante {nombres} :")
                 Dim apellidos As String = Console.ReadLine()
@@ -77,7 +76,15 @@ Module Program
                     resultadoT = "REPROBADO"
                 End If
                 Console.WriteLine("" + vbCrLf + $"{nombres} {apellidos} tiene una califación de {calificacion} y un asistencia de %{asistencia} y  un resultado de :{resultadoT}")
-            ElseIf desicion = 3 Then
+                Console.WriteLine("" + vbCrLf + "¿Quiere volver al menú principal? " + vbCrLf + "Presione la tecla <Y> para continuar, si no preciona cualquier otra letra <X>:")
+                Dim sigo As String = Console.ReadLine()
+                If sigo = "y" Or sigo = "Y" Then
+                    Exit While
+                Else
+                    Continue While
+                End If
+                End While
+        ElseIf desicion = 3 Then
                 While True
                     Console.WriteLine("" + vbCrLf + "Ingrese la temperatura actual :")
                     Dim temperatura As Integer = Console.ReadLine()
@@ -92,14 +99,27 @@ Module Program
                             Console.WriteLine("" + vbCrLf + "El clima esta ARDIENTE, Alista el coche y vete a la playa.")
                     End Select
                     Console.WriteLine("" + vbCrLf + "¿Quiere volver al menú principal? " + vbCrLf + "Presione la tecla <Y> para continuar, si no preciona cualquier otra letra <X>:")
-                        Dim sigo As String = Console.ReadLine()
+                    Dim sigo As String = Console.ReadLine()
                     If sigo = "y" Or sigo = "Y" Then
                         Exit While
                     Else
                         Continue While
                     End If
                 End While
-                'ElseIf desicion = 4 Then
+            ElseIf desicion = 4 Then
+                Console.WriteLine()
+                For i = 1 To 100
+                    If i Mod 3 = 0 And i Mod 7 = 0 Then
+                        Console.Write("Tic-Tock, ")
+                    ElseIf i Mod 3 = 0 Then
+                        Console.Write("Tick, ")
+                    ElseIf i Mod 7 = 0 Then
+                        Console.Write("Tock, ")
+                    Else
+                        Console.Write($"{i}, ")
+                    End If
+                Next
+                Console.WriteLine()
                 'ElseIf desicion = 5 Then
             Else
                 Console.WriteLine("" + vbCrLf + "ERROR. opción invalida, vuelva a intentarlo.")
